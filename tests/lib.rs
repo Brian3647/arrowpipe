@@ -71,3 +71,21 @@ fn test_from() {
     let arrow = Arrow::<_, usize>::default();
     arrow.shoot(1u8);
 }
+
+#[test]
+fn weird_structs() {
+    struct NotCopy {
+        x: Vec<i8>,
+        s: String,
+    }
+
+    let mut arrow = Arrow::new(|i: NotCopy| i.x.len() + i.s.len());
+    arrow.symbiotize(Arrow::new(|i: usize| i * 2));
+
+    let nc = NotCopy {
+        x: vec![1, 2, 3],
+        s: "123".to_string(),
+    };
+
+    assert_eq!(arrow.shoot(nc), 12);
+}

@@ -2,5 +2,14 @@
 name = "arrowpipe"
 version = "0.1.0"
 edition = "2021"
+include = ["src/lib.rs", "Cargo.toml", "README.md", "LICENSE"]
+readme = "README.md"
+license = "MIT"
+repository = "https://github.com/Brian3647/arrowpipe"
+homepage = "https://github.com/Brian3647/arrowpipe"
+documentation = "https://docs.rs/arrowpipe"
+description = "Build complex pipelines easily"
+keywords = ["arrow", "pipeline", "data", "processing"]
+authors = ["Brian3647 <victoris3647@gmail.com>"]
 
 [dependencies]
