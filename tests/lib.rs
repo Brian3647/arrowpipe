@@ -59,3 +59,15 @@ fn test_remove() {
     arrow.remove(idx);
     assert_eq!(arrow.shoot(1), 1);
 }
+
+#[test]
+fn test_nop() {
+    let arrow = Arrow::nop();
+    arrow.shoot(())
+}
+
+#[test]
+fn test_from() {
+    let arrow = Arrow::<_, usize>::default();
+    arrow.shoot(1u8);
+}

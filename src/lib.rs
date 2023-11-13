@@ -61,6 +61,13 @@ pub struct Arrow<T, U = T> {
     symbiosis: Vec<Arrow<U, U>>,
 }
 
+impl<T> Arrow<T, ()> {
+    /// Creates a new [`Arrow`] instance that does nothing.
+    pub fn nop() -> Self {
+        Arrow::new(|_| ())
+    }
+}
+
 impl<T, U> Arrow<T, U> {
     /// Creates a new [`Arrow`] instance.
     pub fn new(essence: fn(T) -> U) -> Self {
@@ -113,5 +120,20 @@ impl<T, U> Arrow<T, U> {
     /// Applies only the essence of the [`Arrow`].
     pub fn apply(&self, input: T) -> U {
         (self.essence)(input)
+    }
+}
+
+impl<T, U> From<Essence<T, U>> for Arrow<T, U> {
+    fn from(essence: Essence<T, U>) -> Self {
+        Arrow::new(essence)
+    }
+}
+
+impl<T, U> Default for Arrow<T, U>
+where
+    U: From<T>,
+{
+    fn default() -> Self {
+        Arrow::new(U::from)
     }
 }
