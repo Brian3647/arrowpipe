@@ -9,7 +9,7 @@ Add the following to your `Cargo.toml`:
 
 ```toml
 [dependencies]
-arrowpipe = { git = "https://github.com/Brian3647/arrowpipe" }
+arrowpipe = "*"
 ```
 
 ## Example
